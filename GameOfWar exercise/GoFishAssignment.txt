@@ -1,0 +1,39 @@
+GoFishGame
+	Collab
+		Player
+		Pond
+		Deck
+	Resp
+		asks Deck to generate and shuffle
+		distributes cards to players and pond
+		picks first player
+		determines game over
+		determines winner
+Player
+	Collab
+		Card
+		Book
+	Resp
+		collection of cards
+		answer number of cards
+		ask/get card from other player
+		surrender card requested by other player
+		collection of books
+		answer number of books
+		picks player and rank to ask for
+
+Pond
+	Collab
+		Card
+	Resp
+		ordered collection of cards available to players
+Card
+	Resp
+		knows suit, rank
+Book
+	Resp
+		collection of 4 matching cards
+Deck
+	Resp
+		generates a legal 52 card set
+		shuffle

@@ -1,0 +1,42 @@
+Use Ruby and TDD to create The Game of War
+
+
+game controller
+
+deck
+
+cards
+
+players
+	A
+	B
+	
+trick
+	cards to compare
+	cards to reap
+	which player won?
+	
+
+
+
+	
+
+war_test.rb file
+---------------------
+require 'test/unit'
+require ./../player.rb
+include Player
+class WarTest < Test::Unit::TestCase
+	def test_deal
+		player1 = Player.new
+		assert_equal(26, player1.number_of_cards)
+		assert_equal(26, player2.number_of_cards)
+	end
+
+
+
+player.rb file
+------------------
+Class Player
+	def number_of_cards
+	
