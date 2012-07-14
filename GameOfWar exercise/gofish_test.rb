@@ -6,7 +6,7 @@ load 'card.rb'
 class GoFishTest < Test::Unit::TestCase
     def setup
     end
-    def xxxxxxxxxtest_distribute_cards
+    def test_distribute_cards
 	  game = GoFishGame.new(4)
 	  assert_equal(4,game.players.size)
 	  game.setup_cards
@@ -36,8 +36,8 @@ class GoFishTest < Test::Unit::TestCase
     def test_turn_with_requested_card_exists
 	  player1 = Player.new
 	  player2 = Player.new
-	  player1.add_card(Card.new("A","hearts"))
-	  player2.add_card(Card.new("A","clubs"))
+	  player1.add_cards_string("AH")
+	  player2.add_cards_string("AC")
 	  player1.seek_from(player2)
 	  #player1.add_cards_array(player2.remove_cards_of_rank("A"))
 	  #card should have moved from player2 to player1
@@ -47,7 +47,7 @@ class GoFishTest < Test::Unit::TestCase
     def test_turn_with_requested_card_absent
 	  player1 = Player.new
 	  player2 = Player.new
-	  player2.add_card(Card.new("A","clubs"))
+	  player2.add_cards_string("AC")
 	  assert_equal(0,player1.number_of_cards)
 	  stolen_cards = player2.remove_cards_of_rank("K")
 	  assert_equal(0,stolen_cards.size)		#verify no cards of rank K found
@@ -56,20 +56,20 @@ class GoFishTest < Test::Unit::TestCase
     end
     def test_game_turn_with_requested_card_present
 	  game = GoFishGame.new(4)
-	  game.players[0].add_card(Card.new("A","clubs"))		#this player will ask for Aces
-	  game.players[1].add_card(Card.new("A","hearts"))
-	  game.players[2].add_card(Card.new("A","spades"))
-	  game.players[3].add_card(Card.new("A","diamonds"))
+	  game.players[0].add_cards_string("AC")		#this player will ask for Aces
+	  game.players[1].add_cards_string("AH")
+	  game.players[2].add_cards_string("AS")
+	  game.players[3].add_cards_string("AD")
 	  game.manage_turn
 	  assert_equal(2, game.players[0].number_of_cards)
 	  assert_equal(2, sum_of_other_players_cards(game))
     end
     def test_game_turn_with_requested_card_absent
 	  game = GoFishGame.new(4)
-	  game.players[0].add_card(Card.new("10","clubs"))		#this player will ask for 10's
-	  game.players[1].add_card(Card.new("A","hearts"))
-	  game.players[2].add_card(Card.new("A","spades"))
-	  game.players[3].add_card(Card.new("A","diamonds"))
+	  game.players[0].add_cards_string("10C")		#this player will ask for 10's
+	  game.players[1].add_cards_string("AH")
+	  game.players[2].add_cards_string("AS")
+	  game.players[3].add_cards_string("AD")
 	  game.manage_turn
 	  assert_equal(2, game.players[0].number_of_cards)
 	  assert_equal(3, sum_of_other_players_cards(game))
@@ -78,9 +78,9 @@ class GoFishTest < Test::Unit::TestCase
     def test_game_over_when_player_has_no_cards
 	  game = GoFishGame.new(4)
 	  #note: player[0] has no cards
-	  game.players[1].add_card(Card.new("A","hearts"))
-	  game.players[2].add_card(Card.new("A","spades"))
-	  game.players[3].add_card(Card.new("A","diamonds"))
+	  game.players[1].add_cards_string("AH")
+	  game.players[2].add_cards_string("AS")
+	  game.players[3].add_cards_string("AD")
 	  assert_equal(true, game.is_over?)
     end
     def test_game_end_by_running_out_of_cards
@@ -92,18 +92,18 @@ class GoFishTest < Test::Unit::TestCase
     end
     def test_player_creating_books
 	  player = Player.new
-	  player.add_card(Card.new("A","clubs"))
-	  player.add_card(Card.new("A","hearts"))
-	  player.add_card(Card.new("A","spades"))
-	  player.add_card(Card.new("A","diamonds"))
+	  player.add_cards_string("AC")
+	  player.add_cards_string("AH")
+	  player.add_cards_string("AS")
+	  player.add_cards_string("AD")
 	  assert_equal(0, player.number_of_cards)
 	  assert_equal(1, player.number_of_books)
-	  player.add_card(Card.new("10","clubs"))
-	  player.add_card(Card.new("10","hearts"))
-	  player.add_card(Card.new("10","spades"))
+	  player.add_cards_string("10C")
+	  player.add_cards_string("10H")
+	  player.add_cards_string("10S")
 	  assert_equal(3, player.number_of_cards)
 	  assert_equal(1, player.number_of_books)
-	  player.add_card(Card.new("10","diamonds"))
+	  player.add_cards_string("10D")
 	  assert_equal(0, player.number_of_cards)
 	  assert_equal(2, player.number_of_books)
     end

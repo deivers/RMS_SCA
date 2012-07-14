@@ -6,6 +6,7 @@ load 'deck.rb'
 class WarTest < Test::Unit::TestCase
   def test_deal
     deck = CardDeck.new
+    assert_equal(52, deck.number_of_cards)
     deck.shuffle
     player1 = Player.new
     player2 = Player.new
@@ -21,12 +22,9 @@ class WarTest < Test::Unit::TestCase
     player2 = Player.new
     game = WarGame.new(player1, player2)
     #set up player1's hand with dominant cards
-    player1.add_card(Card.new("A","spades"))
-    player1.add_card(Card.new("K","clubs"))
+    player1.add_cards_string("AS KS")
     #set up player2's hand
-    player2.add_card(Card.new("Q","spades"))
-    player2.add_card(Card.new("J","clubs"))
-    #play the trick/round
+    player2.add_cards_string("QS JS")
     game.trick(nil)
     assert_equal(3,player1.number_of_cards)
     assert_equal(1,player2.number_of_cards)
@@ -40,9 +38,9 @@ class WarTest < Test::Unit::TestCase
     player2 = Player.new
     game = WarGame.new(player1, player2)
     #set up player1's hand with dominant cards
-    player1.add_card(Card.new("A","spades"))
+    player1.add_cards_string("AS")
     #set up player2's hand
-    player2.add_card(Card.new("Q","spades"))
+    player2.add_cards_string("QS")
     #play the trick/round
     game.trick([Card.new("8","clubs"),Card.new("9","clubs")]) # 2 cards are already on the table
     #check that the winner takes all cards from the table
@@ -55,16 +53,9 @@ class WarTest < Test::Unit::TestCase
     player2 = Player.new
     game = WarGame.new(player1, player2)
     #set up player1's hand
-    player1.add_card(Card.new("A","spades"))
-    player1.add_card(Card.new("K","spades"))
-    player1.add_card(Card.new("Q","spades"))
-    player1.add_card(Card.new("J","spades"))
+    player1.add_cards_string("AS KS QS JS")
     #set up player2's hand
-    player2.add_card(Card.new("A","clubs"))
-    player2.add_card(Card.new("10","clubs"))
-    player2.add_card(Card.new("9","clubs"))
-    player2.add_card(Card.new("8","clubs"))
-    player2.add_card(Card.new("7","clubs"))
+    player2.add_cards_string("AC 10C 9C 8C 7C")
     #play the trick/round
     game.trick(nil)
     # player 2 wins because player 1 runs out of cards
@@ -77,17 +68,9 @@ class WarTest < Test::Unit::TestCase
     player2 = Player.new
     game = WarGame.new(player1, player2)
     #set up player1's hand
-    player1.add_card(Card.new("A","spades"))
-    player1.add_card(Card.new("K","spades"))
-    player1.add_card(Card.new("Q","spades"))
-    player1.add_card(Card.new("J","spades"))
-    player1.add_card(Card.new("K","hearts"))
+    player1.add_cards_string("AS KS QS JS KH")
     #set up player2's hand
-    player2.add_card(Card.new("A","clubs"))
-    player2.add_card(Card.new("9","clubs"))
-    player2.add_card(Card.new("8","clubs"))
-    player2.add_card(Card.new("7","clubs"))
-    player2.add_card(Card.new("6","clubs"))
+    player2.add_cards_string("AC 9C 8C 7C 6C")
     #play the trick/round
     game.trick(nil)
     # player 1 wins

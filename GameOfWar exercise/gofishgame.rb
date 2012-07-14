@@ -21,6 +21,7 @@ class GoFishGame
     def manage_turn
 	  victim = @current_player.choose_victim(other_players)
 	  success = @current_player.seek_from(victim)
+	  @current_player.update_books
 	  if !success
 		go_fish
 		@current_player = victim
@@ -29,6 +30,7 @@ class GoFishGame
 
     def go_fish
 	  @current_player.add_card(deck.remove_top_card)
+	  @current_player.update_books
     end
 
     def is_over?

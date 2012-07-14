@@ -8,7 +8,7 @@ class Player
 
   def add_card(card)
     cards.unshift(card)
-    update_books
+    #update_books
   end
 
   def add_cards_array(card_array)
@@ -73,9 +73,9 @@ class Player
   #helper methods
   def interpret_string(str)
 	hash = str.scan(/([1]*[AKQJakqj0-9])[-_]*([HCDShcds]\w*)\s*/)
-	puts("number parsed: #{hash.size}")
+	#puts("number parsed: #{hash.size}")
 	hash.collect {|subarray|
-	    puts("#{subarray[0]} #{subarray[1]}")
+	    #puts("#{subarray[0]} #{subarray[1]}")
 	    Card.new(subarray[0], subarray[1])}
   end
   #test case for the above - see http://rubular.com/r/nY0KhIxVTM
