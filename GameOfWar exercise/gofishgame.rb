@@ -1,4 +1,5 @@
-load 'player.rb'
+load 'player_robot.rb'
+load 'player_commandline.rb'
 load 'deck.rb'
 
 class GoFishGame
@@ -7,9 +8,10 @@ class GoFishGame
     def initialize(number_players)
 	  @deck = CardDeck.new
 	  @players = []
-	  number_players.times do
-		@players << Player.new
+	  (number_players-1).times do
+		@players << PlayerRobot.new
 	  end
+	  @players << PlayerCommandline.new			# human player
 	  @current_player = @players[0]
     end
 
@@ -20,7 +22,7 @@ class GoFishGame
 
     def manage_turn
 	  victim = @current_player.choose_victim(other_players)
-	  success = @current_player.seek_from(victim)
+	  success = @current_player.seek_from(victim, @current_player.seek_algorithm)
 	  @current_player.update_books
 	  if !success
 		go_fish
@@ -39,5 +41,10 @@ class GoFishGame
 
     def other_players  #returns an array list of players other than the current player
 	players.reject {|player| player == @current_player}
+    end
+
+    #debug methods
+    def showAllCards
+	  players.each {|player| player.showHand; puts("\n")}
     end
 end

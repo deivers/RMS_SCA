@@ -27,26 +27,26 @@ class GoFishTest < Test::Unit::TestCase
 	  assert_equal("14 C",card2.to_s)
     end
     def test_player_cards_from_string
-	  player1 = Player.new
+	  player1 = PlayerRobot.new
 	  player1.add_cards_string("AH 4C 2D 2C Jd 2h 10s")
 	  assert_equal(7, player1.number_of_cards)
 	  player1.add_cards_string("K-Hearts Q-Clubs jD qH 5-h q-c A_diamonds 3_hearts 6-clubs 7-hearts")
 	  assert_equal(17, player1.number_of_cards)		#caution: books may be automatically created in player1, which decreases the card count
     end
     def test_turn_with_requested_card_exists
-	  player1 = Player.new
-	  player2 = Player.new
+	  player1 = PlayerRobot.new
+	  player2 = PlayerRobot.new
 	  player1.add_cards_string("AH")
 	  player2.add_cards_string("AC")
-	  player1.seek_from(player2)
+	  player1.seek_from(player2,player1.seek_algorithm)
 	  #player1.add_cards_array(player2.remove_cards_of_rank("A"))
 	  #card should have moved from player2 to player1
 	  assert_equal(2,player1.number_of_cards)
 	  assert_equal(0,player2.number_of_cards)
     end
     def test_turn_with_requested_card_absent
-	  player1 = Player.new
-	  player2 = Player.new
+	  player1 = PlayerRobot.new
+	  player2 = PlayerRobot.new
 	  player2.add_cards_string("AC")
 	  assert_equal(0,player1.number_of_cards)
 	  stolen_cards = player2.remove_cards_of_rank("K")
@@ -91,19 +91,22 @@ class GoFishTest < Test::Unit::TestCase
 	  assert_equal(true, game.is_over?)
     end
     def test_player_creating_books
-	  player = Player.new
+	  player = PlayerRobot.new
 	  player.add_cards_string("AC")
 	  player.add_cards_string("AH")
 	  player.add_cards_string("AS")
 	  player.add_cards_string("AD")
-	  assert_equal(0, player.number_of_cards)
+	  player.update_books
+	  assert_equal(0, player.number_of_cards)	# because the above creates a book
 	  assert_equal(1, player.number_of_books)
 	  player.add_cards_string("10C")
 	  player.add_cards_string("10H")
 	  player.add_cards_string("10S")
+	  player.update_books
 	  assert_equal(3, player.number_of_cards)
 	  assert_equal(1, player.number_of_books)
 	  player.add_cards_string("10D")
+	  player.update_books
 	  assert_equal(0, player.number_of_cards)
 	  assert_equal(2, player.number_of_books)
     end

@@ -16,7 +16,7 @@ class Card
   end
 
   def to_s
-	@rank.to_s + " " + @suit.to_s
+	@rank.to_s + "" + @suit.to_s
   end
 
   def > other

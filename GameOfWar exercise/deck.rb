@@ -27,7 +27,7 @@ class CardDeck
   def deal_n_cards(players, number_cards_each_player=1)
     #assume there are enough cards remaining
     number_cards_each_player.times do
-	  players.each do |player|
+	players.each do |player|
 	  player.add_card(@cards.pop)
 	end
     end

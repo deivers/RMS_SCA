@@ -42,20 +42,15 @@ class Player
   end
 
   def choose_victim(other_players)
-    #for now, simply random:
-	other_players.sample #use this if running ruby version 1.9x
   end
 
-  def seek_from(victim_player)
-    #temporary algorithm
-    if cards.size == 0		#should never happen because the game would have already ended
-	desired_rank = 2
-    else
-	desired_rank = cards.first.rank
-    end
+   def seek_from(victim_player,desired_rank)
     stolen_cards = victim_player.remove_cards_of_rank(desired_rank)
     add_cards_array(stolen_cards)
     return stolen_cards.size > 0
+  end
+
+  def seek_algorithm
   end
 
   def update_books
@@ -86,4 +81,10 @@ class Player
   #  j-h q-c
   #  A_diamonds 2_hearts
   #  A-clubs 3-hearts
+
+  #debug methods
+  def showHand
+	handString = cards.each {|card| card.to_s}
+	puts(handString.join(" "))
+  end
 end
