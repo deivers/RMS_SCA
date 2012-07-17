@@ -86,5 +86,8 @@ class Player
   def showHand
 	handString = cards.each {|card| card.to_s}
 	puts(handString.join(" "))
+	puts("\n")
   end
+
+  
 end

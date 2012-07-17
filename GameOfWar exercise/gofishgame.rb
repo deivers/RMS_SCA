@@ -45,6 +45,6 @@ class GoFishGame
 
     #debug methods
     def showAllCards
-	  players.each {|player| player.showHand; puts("\n")}
+	  players.each {|player| player.showHand}
     end
 end

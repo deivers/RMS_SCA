@@ -5,8 +5,8 @@ game = GoFishGame.new(4)
 game.setup_cards
 while (!game.is_over?) do
     game.manage_turn
-    puts(" ")
+    puts("")
     game.showAllCards
-    puts(" ")
+    puts("")
 
 end

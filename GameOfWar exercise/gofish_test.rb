@@ -8,23 +8,23 @@ class GoFishTest < Test::Unit::TestCase
     end
     def test_distribute_cards
 	  game = GoFishGame.new(4)
-	  assert_equal(4,game.players.size)
+	  assert 4 == game.players.size
 	  game.setup_cards
-	  assert_equal(5,game.players[0].number_of_cards)
-	  assert_equal(5,game.players[3].number_of_cards)
+	  assert 5 == game.players[0].number_of_cards
+	  assert 5 == game.players[3].number_of_cards
     end
     def test_card_rank
 	  card1 = Card.new("A","clubs")
-	  assert_equal(true, card1.equal_rank("A"))
-	  assert_equal(true, card1.equal_rank("14"))		#String
-	  assert_equal(true, card1.equal_rank(14))		#Number
+	  assert card1.equal_rank("A")
+	  assert card1.equal_rank("14")		#String
+	  assert card1.equal_rank(14)			#Number
     end
     def test_card_suit
 	  card1 = Card.new("A","C")
-	  assert_equal("C", card1.suit)
+	  assert "C" == card1.suit
 	  card2 = Card.new("A","clubs")
-	  assert_equal("C", card2.suit)
-	  assert_equal("14 C",card2.to_s)
+	  assert "C" == card2.suit
+	  assert "14C" == card2.to_s
     end
     def test_player_cards_from_string
 	  player1 = PlayerRobot.new
@@ -81,14 +81,14 @@ class GoFishTest < Test::Unit::TestCase
 	  game.players[1].add_cards_string("AH")
 	  game.players[2].add_cards_string("AS")
 	  game.players[3].add_cards_string("AD")
-	  assert_equal(true, game.is_over?)
+	  assert game.is_over?
     end
     def test_game_end_by_running_out_of_cards
 	  game = GoFishGame.new(4)
 	  game.setup_cards
 	  assert_equal(false, game.is_over?)
 	  game.deck.clear
-	  assert_equal(true, game.is_over?)
+	  assert game.is_over?
     end
     def test_player_creating_books
 	  player = PlayerRobot.new
@@ -97,18 +97,18 @@ class GoFishTest < Test::Unit::TestCase
 	  player.add_cards_string("AS")
 	  player.add_cards_string("AD")
 	  player.update_books
-	  assert_equal(0, player.number_of_cards)	# because the above creates a book
-	  assert_equal(1, player.number_of_books)
+	  assert 0 == player.number_of_cards		# because the above creates a book
+	  assert 1 == player.number_of_books
 	  player.add_cards_string("10C")
 	  player.add_cards_string("10H")
 	  player.add_cards_string("10S")
 	  player.update_books
-	  assert_equal(3, player.number_of_cards)
-	  assert_equal(1, player.number_of_books)
+	  assert 3 == player.number_of_cards
+	  assert 1 == player.number_of_books
 	  player.add_cards_string("10D")
 	  player.update_books
-	  assert_equal(0, player.number_of_cards)
-	  assert_equal(2, player.number_of_books)
+	  assert 0 == player.number_of_cards
+	  assert 2 == player.number_of_books
     end
     #todo: test_a_complete_game
 
