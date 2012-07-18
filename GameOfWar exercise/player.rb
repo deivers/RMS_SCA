@@ -42,6 +42,7 @@ class Player
   end
 
   def choose_victim(other_players)
+	#return a player from this list
   end
 
    def seek_from(victim_player,desired_rank)
@@ -51,6 +52,7 @@ class Player
   end
 
   def seek_algorithm
+	#return the desired rank (based on my hand)
   end
 
   def update_books
@@ -89,5 +91,5 @@ class Player
 	puts("\n")
   end
 
-  
+
 end
