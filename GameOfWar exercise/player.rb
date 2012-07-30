@@ -52,7 +52,7 @@ class Player
   end
 
   def seek_algorithm
-	#return the desired rank (based on my hand)
+	#return the desired rank
   end
 
   def update_books
