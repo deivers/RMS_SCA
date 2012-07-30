@@ -41,17 +41,17 @@ class Card
   def parse_rank(rank)
     #allow a String to be passed in, but represent internally as a Number
     if rank.class == String
-	if rank[0] == "A" || rank == "a"
-	  return 14
-	elsif rank[0] == "K" || rank == "k"
-	  return 13
-	elsif rank[0] == "Q" || rank == "q"
-	  return 12
-	elsif rank[0] == "J" || rank == "j"
-	  return 11
-	else
-	  return rank.to_i
-	end
+		if rank[0] == "A" || rank == "a"
+		  return 14
+		elsif rank[0] == "K" || rank == "k"
+		  return 13
+		elsif rank[0] == "Q" || rank == "q"
+		  return 12
+		elsif rank[0] == "J" || rank == "j"
+		  return 11
+		else
+		  return rank.to_i
+		end
     end
     return rank
   end

@@ -1,0 +1,8 @@
+source 'http://rubygems.org'
+
+gem 'json'
+gem 'sinatra'
+
+group :test do
+
+end
