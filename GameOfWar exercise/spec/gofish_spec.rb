@@ -47,8 +47,8 @@ describe GoFishGame do
 		it "should steal that card from the other player" do
 			player_mock = double("player")
 			PlayerCommandline.stub(:seek_algorithm => 14)
-			player_mock = PlayerCommandline.new
-			victim = PlayerRobot.new
+			player_mock = PlayerCommandline.new("")
+			victim = PlayerRobot.new("")
 			victim.add_cards_string("AC")
 			player_mock.seek_from(victim, player_mock.seek_algorithm).should be_true
 		end
@@ -67,13 +67,13 @@ describe Card do
 		subject.suit.should == "C"
 	  end
 	end
-	
+
 end
 
 describe PlayerRobot do
 	before(:each) do
-	  @player1 = PlayerRobot.new
-	  @player2 = PlayerRobot.new
+	  @player1 = PlayerRobot.new("")
+	  @player2 = PlayerRobot.new("")
 	end
 	context "when given a stack (string) of cards" do
 	  it "should parse the cards" do

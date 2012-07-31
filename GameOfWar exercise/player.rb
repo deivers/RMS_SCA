@@ -1,7 +1,8 @@
 class Player
-  attr_reader :cards
+  attr_reader :name, :cards, :books
 
-  def initialize
+  def initialize(name)
+	@name = name
     @cards = []
     @books = []
   end

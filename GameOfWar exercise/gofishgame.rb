@@ -9,9 +9,9 @@ class GoFishGame
 	  @deck = CardDeck.new
 	  @players = []
 	  (number_players-1).times do
-		@players << PlayerRobot.new
+		@players << PlayerRobot.new("")
 	  end
-	  @players << PlayerCommandline.new			# human player
+	  @players << PlayerCommandline.new("")			# human player
 	  @current_player = @players[0]
     end
 
