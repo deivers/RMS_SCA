@@ -50,12 +50,17 @@ describe GoFishApp do
 	end
 
 	it 'should present a player status page when existing player is identified' do
-		#create a game with player 'joe'
-		#verify joe is existing player, check win/loss history
-	#	get '/player/joe'
+		#create a game with player 'Smitty'
+		app_to_save = app.new!
+		game = GoFishGame.new(["Bud","Doc"])
+		id = app_to_save.unique_id(game)
+		app_to_save.save(game, id)
+		game.clear_current_game
+		#verify Bud is existing player, check win/loss history
+	#	get '/player/Bud'
 		#verify stats on page
-		#verify joe can create new game
-		#post '/player/joe/game/new' ?
+		#verify Bud can create new game
+		#
 	end
 
 

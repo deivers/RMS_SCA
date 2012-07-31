@@ -79,7 +79,7 @@ class GoFishApp < Sinatra::Base
 	end
 
 	def self.clear_current_game
-		@games = null
+		@game.clear_current_game
 	end
 
 	run! if app_file == $0

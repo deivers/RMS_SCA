@@ -38,7 +38,12 @@ class GoFishGame
     end
 
     def is_over?
-	  return deck.number_of_cards==0 || players.any? {|player| player.number_of_cards==0}
+	  return @deck.number_of_cards==0 || players.any? {|player| player.number_of_cards==0}
+    end
+
+    def clear_current_game
+	  @players = []
+	  @deck = CardDeck.new(0)
     end
 
     def other_players  #returns an array list of players other than the current player

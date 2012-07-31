@@ -4,12 +4,14 @@ class CardDeck
   @@suits = %w(clubs diamonds hearts spades)
   @@ranks = %w(2 3 4 5 6 7 8 9 10 J Q K A)
 
-  def initialize
+  def initialize(num=52)
     @cards = []
+    if num > 0
     @@suits.each do |suit|
 		@@ranks.each do |rank|
 			@cards << Card.new(rank, suit)
 		end
+    end
     end
   end
 

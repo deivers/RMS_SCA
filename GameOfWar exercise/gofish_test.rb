@@ -31,6 +31,12 @@ class GoFishTest < Test::Unit::TestCase
 		assert 3 == game.players.size
 		assert "Jake" == game.players[1].to_s
     end
+    def test_game_cleared
+		game = GoFishGame.new(6)
+		assert 6 == game.players.size
+		game.clear_current_game
+		assert 0 == game.players.size
+    end
     def test_player_name
 		player = PlayerRobot.new("John Smith")
 		assert "John Smith" == player.name
