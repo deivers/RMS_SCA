@@ -92,5 +92,7 @@ class Player
 	puts("\n")
   end
 
-
+	def to_s
+		@name
+	end
 end

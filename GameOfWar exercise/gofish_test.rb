@@ -26,9 +26,16 @@ class GoFishTest < Test::Unit::TestCase
 	  assert "C" == card2.suit
 	  assert "14C" == card2.to_s
     end
+    def test_game_created_with_player_names
+		game = GoFishGame.new(["Joe","Jake","Jerry"])
+		assert 3 == game.players.size
+		assert "Jake" == game.players[1].to_s
+    end
     def test_player_name
 		player = PlayerRobot.new("John Smith")
 		assert "John Smith" == player.name
+		cliplayer = PlayerCommandline.new("Doug")
+		assert "Doug" == cliplayer.name
     end
     def test_player_cards_from_string
 	  player1 = PlayerRobot.new("")

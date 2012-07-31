@@ -42,12 +42,11 @@ describe GoFishApp do
 
 	it 'should present a player status page when player is identified' do
 		#want to enter a player name
-	#	post 'player/new', {name: 'Joe'} #alt#:params => {:name => 'Joe'}
-	#	last_response.should be_redirect
-	#	follow_redirect!
-	#	last_response.body.should =~ /Joe/
-		# able to create new game for Joe to play
-	#
+		post 'player', {:name => 'Joe'} #alt#:params => {:name => 'Joe'}
+		last_response.should be_redirect
+		follow_redirect!
+		last_response.body.should =~ /Joe/
+		#verify able to create new game for Joe to play
 	end
 
 	it 'should present a player status page when existing player is identified' do

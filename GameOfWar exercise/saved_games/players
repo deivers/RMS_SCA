@@ -1,0 +1,5 @@
+---
+Joe: !ruby/object:Player
+  name: Joe
+  cards: []
+  books: []

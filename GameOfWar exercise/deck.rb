@@ -7,9 +7,9 @@ class CardDeck
   def initialize
     @cards = []
     @@suits.each do |suit|
-	@@ranks.each do |rank|
-	  @cards << Card.new(rank, suit)
-	end
+		@@ranks.each do |rank|
+			@cards << Card.new(rank, suit)
+		end
     end
   end
 

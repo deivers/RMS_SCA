@@ -5,15 +5,17 @@ load 'deck.rb'
 class GoFishGame
     attr_reader :players, :deck
 
-    def initialize(number_players)
+    def initialize(new_players)
 	  @deck = CardDeck.new
 	  @players = []
-	  (number_players-1).times do
-		@players << PlayerRobot.new("")
+	  if new_players.class == Array
+		new_players.each {|playerName| @players << PlayerRobot.new(playerName) }
+	  else
+		(new_players-1).times {@players << PlayerRobot.new("") }
+	    @players << PlayerCommandline.new("")			# human player
 	  end
-	  @players << PlayerCommandline.new("")			# human player
 	  @current_player = @players[0]
-    end
+	end
 
     def setup_cards
 	  deck.shuffle
